@@ -42,7 +42,7 @@ up-and-running is to add it to your templates::
 
     {% load oembed_tags %}
     
-    {% oembed %}blog.content{% endoembed %}
+    {% oembed %}{{ blog.content }}{% endoembed %}
 
     {# or use the filter #}
     
@@ -50,7 +50,7 @@ up-and-running is to add it to your templates::
     
     {# maybe you're working with some dimensional constraints #}
     
-    {% oembed "600x600" %}blog.content{% endoembed %}
+    {% oembed 600x600 %}{{ blog.content }}{% endoembed %}
     
     {{ blog.content|oembed:"600x600" }}
 
