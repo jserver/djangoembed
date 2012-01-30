@@ -1,10 +1,9 @@
 import os
 
-from django.template import RequestContext, Context
+from django.template import Context
 from django.template.loader import render_to_string, select_template
 
 from oembed.constants import CONSUMER_URLIZE_ALL
-from oembed.utils import mock_request
 
 
 class BaseParser(object):
@@ -20,10 +19,7 @@ class BaseParser(object):
         - response: an OEmbedResource
         - original_url: the url that was passed to the consumer
         """
-        provided_context = context or Context()
-        context = RequestContext(context.get("request") or mock_request())
-        context.update(provided_context)
-        
+
         # templates are named for the resources they display, i.e. video.html
         template_name = '%s.html' % oembed_resource.type
         
