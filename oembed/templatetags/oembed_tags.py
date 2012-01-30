@@ -90,12 +90,12 @@ class OEmbedNode(template.Node):
         self.var_name = var_name
 
     def render(self, context):
-        kwargs = {}
+        kwargs = {'context': context}
         if self.width and self.height:
             kwargs['maxwidth'] = self.width
             kwargs['maxheight'] = self.height
+        if self.template_dir:
             kwargs['template_dir'] = self.template_dir
-            kwargs['context'] = context
 
         client = OEmbedConsumer()
         parsed = client.parse(self.nodelist.render(context), **kwargs)
